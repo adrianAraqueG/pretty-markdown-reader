@@ -112,7 +112,7 @@ export function Lector() {
   const docTitle = items.find((i) => i.level === 1)?.text ?? items[0]?.text ?? 'Documento sin título'
 
   useEffect(() => {
-    document.title = reading ? `${docTitle} · Lector de markdown` : 'Lector de markdown'
+    document.title = reading ? `${docTitle} · Pretty Markdown Reader` : 'Pretty Markdown Reader'
   }, [reading, docTitle])
 
   const toolbar = (
@@ -141,11 +141,11 @@ export function Lector() {
           <div className="max-w-2xl">
             <p className="eyebrow mb-3 flex items-center gap-2">
               <span aria-hidden className="inline-block h-px w-6 bg-beam" />
-              Utilidad
+              Utilidad extraída de FARO ©
             </p>
-            <h1 className="font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-semibold leading-[1.05]">Lector de markdown</h1>
+            <h1 className="font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-semibold leading-[1.05]">Pretty Markdown Reader</h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Pega el markdown que te dio una IA (o un archivo .md) y léelo con formato. El borrador queda solo en tu navegador.
+              Pega el markdown y léelo con formato. El borrador queda solo en tu navegador.
             </p>
           </div>
         </header>
