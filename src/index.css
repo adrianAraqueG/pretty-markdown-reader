@@ -1,0 +1,173 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Papel cálido + tinta azul-noche + haz ámbar de faro */
+    --background: 42 55% 97%;
+    --foreground: 226 45% 13%;
+    --card: 45 80% 99.5%;
+    --card-foreground: 226 45% 13%;
+    --popover: 45 80% 99.5%;
+    --popover-foreground: 226 45% 13%;
+    --primary: 226 62% 20%;
+    --primary-foreground: 42 60% 97%;
+    --secondary: 40 50% 92%;
+    --secondary-foreground: 226 45% 13%;
+    --muted: 40 45% 93%;
+    --muted-foreground: 224 14% 36%;
+    --accent: 38 70% 91%;
+    --accent-foreground: 226 45% 13%;
+    --destructive: 4 80% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 38 30% 85%;
+    --input: 38 22% 74%;
+    --ring: 28 100% 48%;
+    --radius: 0.25rem;
+
+    --ink: 226 62% 20%;
+    --rail: 228 62% 13%;
+    --rail-foreground: 42 60% 96%;
+    --rail-muted: 226 24% 70%;
+    --rail-line: 227 48% 22%;
+
+    --beam: 30 100% 52%;
+    --beam-soft: 36 100% 90%;
+    --beam-ink: 22 92% 18%;
+    --ok: 158 82% 26%;
+    --ok-soft: 152 72% 89%;
+    --warn: 26 92% 30%;
+    --warn-soft: 38 100% 86%;
+    --danger: 4 82% 46%;
+    --danger-soft: 4 100% 94%;
+    --tide: 218 86% 44%;
+    --tide-soft: 218 100% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: hsl(var(--beam) / 0.4);
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  textarea {
+    field-sizing: content;
+  }
+}
+
+@layer components {
+  /* Etiqueta pequeña en mayúsculas, usada como ojo de sección */
+  .eyebrow {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Haz del faro: gradiente cónico suave detrás del marcador activo */
+  .beam-glow {
+    background: linear-gradient(90deg, hsl(var(--beam) / 0.16), transparent 70%);
+  }
+  /* Pestañas de la guía: la activa lleva el subrayado del haz. Se definen aquí (y no con utilidades sueltas) para no
+     depender de los estilos por defecto de las pestañas de shadcn. */
+  .tabs-line {
+    @apply mb-10 flex w-full items-end gap-8 overflow-x-auto border-b;
+  }
+  .tab-line {
+    @apply shrink-0 whitespace-nowrap border-b-[3px] border-transparent bg-transparent pb-3 pt-1 font-display text-[17px] text-muted-foreground transition-colors hover:text-foreground;
+  }
+  .tab-line[data-state='active'] {
+    @apply border-beam text-foreground;
+  }
+  .tabs-pills {
+    @apply mb-3 inline-flex gap-1 rounded-[3px] bg-secondary p-1;
+  }
+  .tab-pill {
+    @apply rounded-[2px] px-3 py-1.5 font-mono text-[13px] text-muted-foreground transition-colors hover:text-foreground;
+  }
+  .tab-pill[data-state='active'] {
+    @apply bg-card text-foreground shadow-sm;
+  }
+  .hatch {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 6px,
+      hsl(var(--border) / 0.7) 6px 7px
+    );
+  }
+}
+
+/* Resaltado de código del lector (sobre el fondo oscuro de los bloques) */
+.hljs-comment,
+.hljs-quote {
+  color: hsl(var(--rail-muted));
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag {
+  color: hsl(var(--beam));
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-template-variable {
+  color: hsl(152 60% 62%);
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-link {
+  color: hsl(36 100% 72%);
+}
+.hljs-title,
+.hljs-section,
+.hljs-built_in,
+.hljs-type,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: hsl(212 100% 76%);
+}
+.hljs-deletion {
+  color: hsl(4 100% 72%);
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
